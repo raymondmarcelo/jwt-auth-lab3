@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./config/db'); // your existing db.js
 const authRoutes = require('./routes/authRoutes');
+const reportRoutes = require('./routes/reportRoutes'); // ⬅️ add this
 
 const app = express();
 
@@ -17,7 +18,8 @@ app.get('/api/health', (req, res) => {
 });
 
 // Routes
-app.use('/api', authRoutes); // prefix all auth routes with /api
+app.use('/api', authRoutes);    // auth endpoints
+app.use('/api', reportRoutes);  // report endpoints ⬅️ add this
 
 // Start server
 const PORT = process.env.SERVER_PORT || 3000;
